@@ -2,36 +2,41 @@
 <html>
 	<head>
 		<title>Validating Sorting Networks</title>
+
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
 	</head>
 	<body>
         <a href="https://github.com/PiJoules/sorting-networks"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
     
-        <p>
-            <a target="_blank" href="https://www.reddit.com/r/dailyprogrammer/comments/36m83a/20150520_challenge_215_intermediate_validating/">/r/dailyprogrammer challenge</a>
-        </p>
+        <div class="container">
+            <p>
+                <a target="_blank" href="https://www.reddit.com/r/dailyprogrammer/comments/36m83a/20150520_challenge_215_intermediate_validating/">/r/dailyprogrammer challenge</a>
+            </p>
 
-        <form class="validation-form" method="GET" action="/validate">
-            <label># of wires: </label>
-            <input type="text" name="wc" value="" placeholder="# of wires" />
-            <br>
+            <form class="validation-form" method="GET" action="/validate">
+                <label># of wires: </label>
+                <input type="text" name="wc" value="" placeholder="# of wires" />
+                <br>
 
-            <label>Comparators (as JSON string): </label>
-            <input type="text" name="c" value="" placeholder="comparators" />
-            <br>
-            <input type="submit" name="Update" value="Update" />
-        </form>
+                <label>Comparators (as JSON string): </label>
+                <input type="text" name="c" value="" placeholder="comparators" />
+                <br>
+                <input type="submit" name="Update" value="Update" />
+            </form>
 
-        <h3>Example input of valid network:</h3>
-        <p># of wires: 4</p>
-        <p>Comparators (as JSON string): [["0", "2"], ["1", "3"], ["0", "1"], ["2", "3"], ["1", "2"]]</p>
+            <h3>Example input of valid network:</h3>
+            <p># of wires: 4</p>
+            <p>Comparators (as JSON string): [["0", "2"], ["1", "3"], ["0", "1"], ["2", "3"], ["1", "2"]]</p>
 
-        <h3>Example input of invalid network:</h3>
-        <p># of wires: 8</p>
-        <p>Comparators (as JSON string): [["0", "2"], ["1", "3"], ["0", "1"], ["2", "3"], ["1", "2"], ["4", "6"], ["5", "7"], ["4", "5"], ["6", "7"], ["5", "6"], ["0", "4"], ["1", "5"], ["2", "6"], ["3", "7"], ["2", "4"], ["3", "5"], ["1", "2"], ["3", "4"], ["6", "7"]]</p>
+            <h3>Example input of invalid network:</h3>
+            <p># of wires: 8</p>
+            <p>Comparators (as JSON string): [["0", "2"], ["1", "3"], ["0", "1"], ["2", "3"], ["1", "2"], ["4", "6"], ["5", "7"], ["4", "5"], ["6", "7"], ["5", "6"], ["0", "4"], ["1", "5"], ["2", "6"], ["3", "7"], ["2", "4"], ["3", "5"], ["1", "2"], ["3", "4"], ["6", "7"]]</p>
 
-        <h1 class="result"></h1>
+            <h1 class="result"></h1>
+        </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <script type="text/javascript">
             $(document).on('submit', '.validation-form', function(e) {
                  $.ajax({
