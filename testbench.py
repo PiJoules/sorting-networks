@@ -22,6 +22,9 @@ for line in sys.stdin:
 snv = SortingNetworkValidator(wire_count, comparators)
 
 # Check values
-print wire_count
-print json.dumps(comparators)
-print snv.isValid()
+print "wire count: ", wire_count
+print "comparators (as json string): ", json.dumps(comparators)
+if snv.isValid():
+	print "Valid Network"
+else:
+	print "Invalid Network"
