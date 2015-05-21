@@ -4,54 +4,229 @@
 		<title>Validating Sorting Networks</title>
 
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/docs.min.css" />
 	</head>
-	<body>
+	<body id="top">
         <a href="https://github.com/PiJoules/sorting-networks"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
     
-        <div class="container">
-            <p>
-                <a target="_blank" href="https://www.reddit.com/r/dailyprogrammer/comments/36m83a/20150520_challenge_215_intermediate_validating/">/r/dailyprogrammer challenge</a>
-            </p>
+        <div class="container bs-docs-container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="bs-docs-section">
+                        <div id="overview" class="page-header">
+                            <h1>Validating Sorting Networks</h1>
+                        </div>
+                        <p class="lead">
+                            Check if a sorting network works correctly by entering the number of wires and the lines between two wires as an array consisting of the two wire numbers. More information about the challenge at <a target="_blank" href="https://www.reddit.com/r/dailyprogrammer/comments/36m83a/20150520_challenge_215_intermediate_validating/">/r/dailyprogrammer</a>.
+                        </p>
 
-            <form class="validation-form" method="GET" action="/validate">
-                <label># of wires: </label>
-                <input type="text" name="wc" value="" placeholder="# of wires" />
-                <br>
+                        <form class="validation-form" method="GET" action="/validate">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label># of wires: </label>
+                                        <input class="form-control" type="text" name="wc" value="" placeholder="# of wires" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <label>Comparators (as JSON string): </label>
+                                        <input class="form-control" type="text" name="c" value="" placeholder="comparators" />
+                                    </div>
+                                </div>
+                            </div>
 
-                <label>Comparators (as JSON string): </label>
-                <input type="text" name="c" value="" placeholder="comparators" />
-                <br>
-                <input type="submit" name="Update" value="Update" />
-            </form>
+                            <p><button type="submit" class="btn btn-default">Check</button></p>
 
-            <h3>Example input of valid network:</h3>
-            <p># of wires: 4</p>
-            <p>Comparators (as JSON string): [["0", "2"], ["1", "3"], ["0", "1"], ["2", "3"], ["1", "2"]]</p>
+                            <p class="result"></p>
+                        </form>
+                    </div>
+                    <div class="bs-docs-section">
+                        <div class="page-header">
+                            <h2 id="examples">Examples</h2>
+                        </div>
+                        <p class="lead">
+                            Some examples (in case I didn't exmplain how to use this well).
+                        </p>
 
-            <h3>Example input of invalid network:</h3>
-            <p># of wires: 8</p>
-            <p>Comparators (as JSON string): [["0", "2"], ["1", "3"], ["0", "1"], ["2", "3"], ["1", "2"], ["4", "6"], ["5", "7"], ["4", "5"], ["6", "7"], ["5", "6"], ["0", "4"], ["1", "5"], ["2", "6"], ["3", "7"], ["2", "4"], ["3", "5"], ["1", "2"], ["3", "4"], ["6", "7"]]</p>
 
-            <h1 class="result"></h1>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 id="example-valid-network" class="panel-title">Example input of a valid network</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="validation-form" method="GET" action="/validate">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label># of wires: </label>
+                                                <input class="form-control" type="text" name="wc" value="4" placeholder="# of wires" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="form-group">
+                                                <label>Comparators (as JSON string): </label>
+                                                <input class="form-control" type="text" name="c" value='[["0", "2"], ["1", "3"], ["0", "1"], ["2", "3"], ["1", "2"]]' placeholder="comparators" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p><button type="submit" class="btn btn-default">Check</button></p>
+
+                                    <p class="result"></p>
+                                </form>
+                            </div>
+                        </div>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 id="example-invalid-network" class="panel-title">Example input of an invalid network</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="validation-form" method="GET" action="/validate">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label># of wires: </label>
+                                                <input class="form-control" type="text" name="wc" value="8" placeholder="# of wires" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="form-group">
+                                                <label>Comparators (as JSON string): </label>
+                                                <input class="form-control" type="text" name="c" value='[["0", "2"], ["1", "3"], ["0", "1"], ["2", "3"], ["1", "2"], ["4", "6"], ["5", "7"], ["4", "5"], ["6", "7"], ["5", "6"], ["0", "4"], ["1", "5"], ["2", "6"], ["3", "7"], ["2", "4"], ["3", "5"], ["1", "2"], ["3", "4"], ["6", "7"]]' placeholder="comparators" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p><button type="submit" class="btn btn-default">Check</button></p>
+
+                                    <p class="result"></p>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="bs-docs-section">
+                        <div class="page-header">
+                            <h2 id="source">Source</h2>
+                        </div>
+                        <p class="lead">
+                            This is the main class that takes the number of wires and lines connecting them, and determines whether or not the network is valid. The rest of the code is available on <a href="https://github.com/PiJoules/sorting-networks">Github</a>.
+                        </p>
+
+                        <pre>
+# Class that receives number of wires, comparators, and list of the comparator-line pairs
+class SortingNetworkValidator:
+
+&#x9;def __init__(self, wire_count, comparators):
+&#x9;&#x9;self.wire_count = wire_count
+&#x9;&#x9;self.comparators = comparators
+&#x9;&#x9;self.valid_test_cases = []
+&#x9;&#x9;self.invalid_test_cases = []
+
+&#x9;&#x9;cases = self.generate_test_cases(wire_count)
+&#x9;&#x9;for case in cases:
+&#x9;&#x9;&#x9;if self.network_does_work(case):
+&#x9;&#x9;&#x9;&#x9;self.valid_test_cases.append(case)
+&#x9;&#x9;&#x9;else:
+&#x9;&#x9;&#x9;&#x9;self.invalid_test_cases.append(case)
+
+&#x9;# Run the test for a given case
+&#x9;def network_does_work(self, case):
+&#x9;&#x9;for comparator in self.comparators:
+&#x9;&#x9;&#x9;n0 = int(comparator[0])
+&#x9;&#x9;&#x9;n1 = int(comparator[1])
+&#x9;&#x9;&#x9;case_n0 = int(case[n0])
+&#x9;&#x9;&#x9;case_n1 = int(case[n1])
+&#x9;&#x9;&#x9;case = case[:n0] + str(min(case_n0,case_n1)) + case[n0+1:]
+&#x9;&#x9;&#x9;case = case[:n1] + str(max(case_n0,case_n1)) + case[n1+1:]
+
+&#x9;&#x9;case = case.lstrip(&#x22;0&#x22;).rstrip(&#x22;1&#x22;)
+&#x9;&#x9;return case == &#x22;&#x22;
+
+&#x9;# Create all 2**N possible sequences of 1s and 0s
+&#x9;def generate_test_cases(self, N):
+&#x9;&#x9;cases = []
+&#x9;&#x9;for i in range(2**N):
+&#x9;&#x9;&#x9;cases.append(self.int_to_binary(i,N))
+&#x9;&#x9;return cases
+
+&#x9;# Take an int and make it a binary string with padded zeroes
+&#x9;def int_to_binary(self, i, N):
+&#x9;&#x9;return &#x22;{0:b}&#x22;.format(i).zfill(N)
+
+&#x9;def isValid(self):
+&#x9;&#x9;return len(self.invalid_test_cases) == 0
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" style="position: fixed;">
+                        <ul class="nav bs-docs-sidenav">
+                            <li class="">
+                                <a href="#overview">Validating Sorting Networks</a>
+                            </li>
+                            <li>
+                                <a href="#examples">Examples</a>
+                                <ul class="nav">
+                                    <li><a href="#example-valid-network">Valid Network</a></li>
+                                    <li><a href="#example-invalid-network">Invalid Network</a></li>
+                                </ul>
+                            </li>
+                            <li class="">
+                                <a href="#source">Source</a>
+                            </li>
+                        </ul>
+                        <a class="back-to-top" href="#top">Back to top</a>
+                    </nav>
+                </div>
+            </div>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/js/docs.min.js"></script>
         <script type="text/javascript">
-            $(document).on('submit', '.validation-form', function(e) {
-                 $.ajax({
-                    url: $(this).attr('action'),
-                    type: $(this).attr('method'),
-                    data: $(this).serialize(),
-                    success: function(response) {
-                    	if (response == 1)
-                        	$(".result").text("Valid Network");
-                        else
-                        	$(".result").text("Invalid Network");
+            $('.validation-form').each(function(){
+                var that = $(this);
+                that.on('submit', function(e) {
+                    var wc = that.find("input[name=wc]").val().trim();
+                    var c = that.find("input[name=c]").val().trim();
+                    if (wc !== "" && c !== ""){
+                        $.ajax({
+                            url: that.attr('action'),
+                            type: that.attr('method'),
+                            data: that.serialize(),
+                            success: function(response) {
+                                if (response == 1)
+                                    createValidMessage(that.find(".result"));
+                                else
+                                    createInvalidMessage(that.find(".result"));
+                            }
+                        });
                     }
+                    else {
+                        createMissingMessage(that.find(".result"));
+                    }
+                    e.preventDefault();
                 });
-                e.preventDefault();
             });
+
+            function createValidMessage(elem){
+                elem.html('<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">&times;</a>The network is valid</div>');
+            }
+
+            function createInvalidMessage(elem){
+                elem.html('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert">&times;</a>The network is invalid.</div>');
+            }
+
+            function createMissingMessage(elem){
+                elem.html('<div class="alert alert-warning"><a href="#" class="close" data-dismiss="alert">&times;</a>The input given is not valid.</div>');
+            }
         </script>
 	</body>
 </html>
